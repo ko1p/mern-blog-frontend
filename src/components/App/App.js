@@ -1,8 +1,8 @@
 import { Routes, Route } from "react-router-dom";
 import Container from "@mui/material/Container";
 
-import { Header } from "./components";
-import { Home, FullPost, Registration, AddPost, Login } from "./pages";
+import { Header } from "..";
+import { Home, FullPost, Registration, AddPost, Login } from "../../pages";
 
 function App() {
   return (
