@@ -14,13 +14,25 @@ export const fetchAuth = createAsyncThunk(
 );
 
 export const fetchAuthMe = createAsyncThunk(
-    'auth/fetchAuth',
+    'auth/fetchAuthMe',
     async (_, thunkAPI) => {
         try {
             const { data } = await axios.get('auth/me');
             return data;
         } catch (err) {
             return thunkAPI.rejectWithValue("При авторизации произошла ошибка.")
+        }
+    }
+);
+
+export const fetchRegister = createAsyncThunk(
+    'auth/fetchRegister',
+    async (params, thunkAPI) => {
+        try {
+            const { data } = await axios.post('auth/register', params);
+            return data;
+        } catch (err) {
+            return thunkAPI.rejectWithValue("При регистрации произошла ошибка.")
         }
     }
 );

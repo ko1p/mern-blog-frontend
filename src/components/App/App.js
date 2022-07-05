@@ -3,13 +3,13 @@ import Container from "@mui/material/Container";
 
 import { Header } from "..";
 import { Home, FullPost, Registration, AddPost, Login } from "../../pages";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch,  } from "react-redux";
 import { useEffect } from "react";
 import { fetchAuthMe } from "../../store/actions/auth";
-import { isAuth } from "../../store/slices/authSlice";
+// import { isAuth } from "../../store/slices/authSlice";
 
 function App() {
-  const isUserAuth = useSelector(isAuth);
+  // const isUserAuth = useSelector(isAuth);
   const dispatch = useDispatch();
 
   useEffect(() => {
