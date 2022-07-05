@@ -29,8 +29,16 @@ export const Login = () => {
     mode: "onChange",
   });
 
-  const onSubmit = (values) => {
-    dispatch(fetchAuth(values));
+  const onSubmit = async (values) => {
+    const data  = await dispatch(fetchAuth(values));
+
+    if (`error` in data) {
+      return alert(data.payload);
+    }
+
+    if ('token' in data.payload) {
+      window.localStorage.setItem('token', data.payload.token)
+    }
   };
 
   if (isUserAuth) {
