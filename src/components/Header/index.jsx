@@ -14,8 +14,10 @@ export const Header = () => {
   const dispatch = useDispatch();
 
   const onClickLogout = () => {
-    if (window.confirm('Вы действительно хотите выйти?'))
-    dispatch(logout());
+    if (window.confirm('Вы действительно хотите выйти?')) {
+      dispatch(logout());
+      window.localStorage.removeItem('token');
+    }
   };
 
   return (

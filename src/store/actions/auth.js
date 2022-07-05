@@ -11,4 +11,16 @@ export const fetchAuth = createAsyncThunk(
             return thunkAPI.rejectWithValue("При авторизации произошла ошибка.")
         }
     }
-); // TODO Сохранить текст ошибок в redux, как-то отобразить их пользователю.
+);
+
+export const fetchAuthMe = createAsyncThunk(
+    'auth/fetchAuth',
+    async (_, thunkAPI) => {
+        try {
+            const { data } = await axios.get('auth/me');
+            return data;
+        } catch (err) {
+            return thunkAPI.rejectWithValue("При авторизации произошла ошибка.")
+        }
+    }
+);
