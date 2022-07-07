@@ -35,7 +35,7 @@ export const FullPost = () => {
         id={data._id}
         title={data.title}
         imageUrl={data.imageUrl}
-        user={data.useEffect}
+        user={data.user}
         createdAt={data.createdAt}
         viewsCount={data.viewsCount}
         commentsCount={3}
