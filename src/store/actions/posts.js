@@ -25,3 +25,15 @@ export const fetchTags = createAsyncThunk(
     }
 ); // TODO Сохранить текст ошибок в redux, как-то отобразить их пользователю.
 
+export const fetchRemovePost = createAsyncThunk(
+    'posts/fetchRemovePost',
+    async (id, thunkAPI) => {
+        try {
+            const { data } = await axios.delete(`/posts/${id}`);
+            return data;
+        } catch (err) {
+            return thunkAPI.rejectWithValue("При удалении статьи произошла ошибка.")
+        }
+    }
+); // TODO Сохранить текст ошибок в redux, как-то отобразить их пользователю.
+
