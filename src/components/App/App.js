@@ -6,10 +6,8 @@ import { Home, FullPost, Registration, AddPost, Login } from "../../pages";
 import { useDispatch,  } from "react-redux";
 import { useEffect } from "react";
 import { fetchAuthMe } from "../../store/actions/auth";
-// import { isAuth } from "../../store/slices/authSlice";
 
 function App() {
-  // const isUserAuth = useSelector(isAuth);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -23,6 +21,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/posts/:id" element={<FullPost />} />
+          <Route path="/posts/:id/edit" element={<AddPost />} />
           <Route path="/add-post" element={<AddPost />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Registration />} />
