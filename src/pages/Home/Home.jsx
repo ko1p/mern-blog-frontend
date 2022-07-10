@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Grid from '@mui/material/Grid';
@@ -14,20 +14,21 @@ export const Home = () => {
   const dispatch = useDispatch();
   const { posts, tags } = useSelector(state => state.posts);
   const userData = useSelector(state => state.auth.data);
+  const [sortedBy, setSortedBy] = useState('latest');
 
   const isPostsLoading = posts.status === 'loading';
   const isTagsLoading = tags.status === 'loading';
 
   useEffect(() => {
-    dispatch(fetchPosts());
+    dispatch(fetchPosts(sortedBy));
     dispatch(fetchTags());
-  }, [dispatch]) 
+  }, [dispatch, sortedBy]);
 
   return (
     <>
-      <Tabs style={{ marginBottom: 15 }} value={0} aria-label="basic tabs example">
-        <Tab label="Новые" />
-        <Tab label="Популярные" />
+      <Tabs style={{ marginBottom: 15 }} value={sortedBy === 'latest' ? 0 : 1} aria-label="Сортировка статей">
+        <Tab label="Новые" onClick={() => setSortedBy('latest')} />
+        <Tab label="Популярные" onClick={() => setSortedBy('views')} />
       </Tabs>
       <Grid container spacing={4}>
         <Grid xs={8} item>

@@ -3,9 +3,9 @@ import axios from "../../axios/axios";
 
 export const fetchPosts = createAsyncThunk(
     'posts/fetchPosts',
-    async (_, thunkAPI) => {
+    async (sortParam, thunkAPI) => {
         try {
-            const { data } = await axios.get('/posts');
+            const { data } = await axios.get(`/posts?sortBy=${sortParam}`);
             return data;
         } catch (err) {
             return thunkAPI.rejectWithValue("При загрузке постов произошла ошибка.")
