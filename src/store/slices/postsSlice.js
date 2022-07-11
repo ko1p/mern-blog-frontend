@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchPosts, fetchRemovePost, fetchTags } from "../actions/posts";
+import { fetchPosts, fetchPostsWithTag, fetchRemovePost, fetchTags } from "../actions/posts";
 
 const initialState = {
     posts: {
@@ -28,6 +28,18 @@ export const postsSlice = createSlice({
             state.posts.items = action.payload;
         },
         [fetchPosts.rejected]: (state) => {
+            state.posts.status = 'error';
+            state.posts.items = [];
+        },
+        [fetchPostsWithTag.pending]: (state) => {
+            state.posts.status = 'loading';
+            state.posts.items = [];
+        },
+        [fetchPostsWithTag.fulfilled]: (state, action) => {
+            state.posts.status = 'loaded';
+            state.posts.items = action.payload;
+        },
+        [fetchPostsWithTag.rejected]: (state) => {
             state.posts.status = 'error';
             state.posts.items = [];
         },
