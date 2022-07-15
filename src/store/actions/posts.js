@@ -49,3 +49,14 @@ export const fetchRemovePost = createAsyncThunk(
     }
 ); // TODO Сохранить текст ошибок в redux, как-то отобразить их пользователю.
 
+export const fetchLastComments = createAsyncThunk(
+    'comments/fetchLastComments',
+    async (_, thunkAPI) => {
+        try {
+            const { data } = await axios.get(`/comments`);
+            return data;
+        } catch (err) {
+            return thunkAPI.rejectWithValue("При загрузке комментариев произошла ошибка.")
+        }
+    }
+); // TODO Сохранить текст ошибок в redux, как-то отобразить их пользователю.
