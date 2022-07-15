@@ -6,7 +6,7 @@ import TextField from "@mui/material/TextField";
 import Avatar from "@mui/material/Avatar";
 import Button from "@mui/material/Button";
 
-export const Index = () => {
+export const AddComment = () => {
   return (
     <>
       <div className={styles.root}>
