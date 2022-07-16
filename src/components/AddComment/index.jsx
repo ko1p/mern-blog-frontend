@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 import styles from "./AddComment.module.scss";
 
@@ -9,14 +9,15 @@ import Button from "@mui/material/Button";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { fetchCreateComment } from "../../store/actions/posts";
+import { postsSlice } from '../../store/slices/postsSlice'
 
 export const AddComment = () => {
   const dispatch = useDispatch();
   const { avatarUrl } = useSelector(state => state.auth.data);
+  const { commentText } = useSelector(state => state.posts.currentPost);
+  const { setCommentTextInput } = postsSlice.actions;
 
   const { id } = useParams();
- 
-  const [ commentText, setCommentText ] = useState('');
 
   const sendComment = () => {
     dispatch(fetchCreateComment({id, commentText}))
@@ -36,7 +37,8 @@ export const AddComment = () => {
             maxRows={10}
             multiline
             fullWidth
-            onChange={e => setCommentText(e.target.value.trim())}
+            value={commentText}
+            onChange={e => dispatch(setCommentTextInput(e.target.value.trim()))}
           />
           <Button onClick={sendComment} variant="contained" disabled={commentText.length < 1}>Отправить</Button>
         </div>

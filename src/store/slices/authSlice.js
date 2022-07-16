@@ -43,14 +43,6 @@ export const authSlice = createSlice({
       state.status = "loading";
       state.data = null;
     },
-    [fetchRegister.fulfilled]: (state, action) => {
-      state.status = "loaded";
-      state.data = action.payload;
-    },
-    [fetchRegister.rejected]: (state) => {
-      state.status = "error";
-      state.data = null;
-    },
   },
 });
 
