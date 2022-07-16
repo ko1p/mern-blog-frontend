@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { fetchPosts, fetchPostsWithTag, fetchRemovePost, fetchTags, fetchLastComments } from "../actions/posts";
+import { fetchPosts, fetchPostsWithTag, fetchRemovePost, fetchTags, fetchLastComments, fetchPostById, fetchCommentsById } from "../actions/posts";
 
 const initialState = {
     posts: {
@@ -13,6 +13,14 @@ const initialState = {
     comments: {
         items: [],
         status: 'loading',
+    },
+    currentPost: {
+        status: 'loading',
+        data: {},
+        comments: {
+            status: 'loading',
+            items: [],
+        },
     }
 };
 
@@ -73,6 +81,30 @@ export const postsSlice = createSlice({
         [fetchLastComments.rejected]: (state) => {
             state.comments.status = 'error';
             state.comments.items = [];
+        },
+        [fetchPostById.pending]: (state) => {
+            state.currentPost.status = 'loading';
+            state.currentPost.data = {};
+        },
+        [fetchPostById.fulfilled]: (state, action) => {
+            state.currentPost.status= 'loaded';
+            state.currentPost.data = action.payload;
+        },
+        [fetchPostById.rejected]: (state) => {
+            state.currentPost.status = 'error';
+            state.currentPost.data = {};
+        },
+        [fetchCommentsById.pending]: (state) => {
+            state.currentPost.comments.status = 'loading';
+            state.currentPost.comments.items = [];
+        },
+        [fetchCommentsById.fulfilled]: (state, action) => {
+            state.currentPost.comments.status = 'loaded';
+            state.currentPost.comments.items = action.payload;
+        },
+        [fetchCommentsById.rejected]: (state) => {
+            state.currentPost.comments.status  = 'error';
+            state.currentPost.comments.items = [];
         },
     }
 });

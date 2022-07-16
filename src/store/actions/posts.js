@@ -25,6 +25,18 @@ export const fetchPostsWithTag = createAsyncThunk(
     }
 ); // TODO Сохранить текст ошибок в redux, как-то отобразить их пользователю.
 
+export const fetchPostById = createAsyncThunk(
+    'posts/fetchPostById',
+    async (id, thunkAPI) => {
+        try {
+            const { data } = await axios.get(`/posts/${id}`);
+            return data;
+        } catch (err) {
+            return thunkAPI.rejectWithValue("При загрузке статьи произошла ошибка.")
+        }
+    }
+); // TODO Сохранить текст ошибок в redux, как-то отобразить их пользователю.
+
 export const fetchTags = createAsyncThunk(
     'posts/fetchTags',
     async (_, thunkAPI) => {
@@ -70,6 +82,18 @@ export const fetchCreateComment = createAsyncThunk(
             return data;
         } catch (err) {
             return thunkAPI.rejectWithValue("При отправке комментария на серевер произошла ошибка.")
+        }
+    }
+); // TODO Сохранить текст ошибок в redux, как-то отобразить их пользователю.
+
+export const fetchCommentsById = createAsyncThunk(
+    'posts/fetchCommentsById',
+    async (id, thunkAPI) => {
+        try {
+            const { data } = await axios.get(`/comments/${id}`);
+            return data;
+        } catch (err) {
+            return thunkAPI.rejectWithValue("При загрузке комментариев произошла ошибка.")
         }
     }
 ); // TODO Сохранить текст ошибок в redux, как-то отобразить их пользователю.
