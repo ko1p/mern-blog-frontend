@@ -60,3 +60,16 @@ export const fetchLastComments = createAsyncThunk(
         }
     }
 ); // TODO Сохранить текст ошибок в redux, как-то отобразить их пользователю.
+
+export const fetchCreateComment = createAsyncThunk(
+    'comments/fetchCreateComment',
+    async ({id, commentText}, thunkAPI) => {
+        console.log(id, commentText)
+        try {
+            const { data } = await axios.post(`/comments/${id}`, {text: commentText});
+            return data;
+        } catch (err) {
+            return thunkAPI.rejectWithValue("При отправке комментария на серевер произошла ошибка.")
+        }
+    }
+); // TODO Сохранить текст ошибок в redux, как-то отобразить их пользователю.
