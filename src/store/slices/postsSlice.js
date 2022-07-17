@@ -30,7 +30,10 @@ const initialState = {
       status: "loading",
       items: [],
     },
-    commentText: "",
+    comment: {
+      text: '',
+      status: 'loaded'
+    },
   },
 };
 
@@ -39,7 +42,7 @@ export const postsSlice = createSlice({
   initialState,
   reducers: {
     setCommentTextInput(state, action) {
-      state.currentPost.commentText = action.payload;
+      state.currentPost.comment.text = action.payload;
     },
   },
   extraReducers: {
@@ -120,12 +123,17 @@ export const postsSlice = createSlice({
       state.currentPost.comments.status = "error";
       state.currentPost.comments.items = [];
     },
-    // [fetchCreateComment.pending]: (state) => {},
+    [fetchCreateComment.pending]: (state) => {
+      state.currentPost.comment.status = 'loading';
+    },
     [fetchCreateComment.fulfilled]: (state, action) => {
       state.currentPost.comments.items = action.payload;
-      state.currentPost.commentText = '';
+      state.currentPost.comment.text = '';
+      state.currentPost.comment.status = 'loaded';
     },
-    // [fetchCreateComment.rejected]: (state) => {},
+    [fetchCreateComment.rejected]: (state) => {
+      state.currentPost.comment.status = 'error';
+    },
   },
 });
 

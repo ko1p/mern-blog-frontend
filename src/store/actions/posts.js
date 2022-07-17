@@ -75,10 +75,10 @@ export const fetchLastComments = createAsyncThunk(
 
 export const fetchCreateComment = createAsyncThunk(
     'comments/fetchCreateComment',
-    async ({id, commentText}, thunkAPI) => {
-        console.log(id, commentText)
+    async ({id, text}, thunkAPI) => {
+        console.log(id, text)
         try {
-            const { data } = await axios.post(`/comments/${id}`, {text: commentText});
+            const { data } = await axios.post(`/comments/${id}`, {text});
             return data;
         } catch (err) {
             return thunkAPI.rejectWithValue("При отправке комментария на серевер произошла ошибка.")

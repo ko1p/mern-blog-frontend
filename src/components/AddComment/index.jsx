@@ -4,7 +4,7 @@ import styles from "./AddComment.module.scss";
 
 import TextField from "@mui/material/TextField";
 import Avatar from "@mui/material/Avatar";
-import Button from "@mui/material/Button";
+import { LoadingButton } from '@mui/lab';
 
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
@@ -14,13 +14,14 @@ import { postsSlice } from '../../store/slices/postsSlice'
 export const AddComment = () => {
   const dispatch = useDispatch();
   const { avatarUrl } = useSelector(state => state.auth.data);
-  const { commentText } = useSelector(state => state.posts.currentPost);
+  const { text, status } = useSelector(state => state.posts.currentPost.comment);
   const { setCommentTextInput } = postsSlice.actions;
+  const commentIsLoading = status === 'loading';
 
   const { id } = useParams();
 
   const sendComment = () => {
-    dispatch(fetchCreateComment({id, commentText}))
+    dispatch(fetchCreateComment({id, text}))
   }
 
   return (
@@ -37,10 +38,10 @@ export const AddComment = () => {
             maxRows={10}
             multiline
             fullWidth
-            value={commentText}
+            value={text}
             onChange={e => dispatch(setCommentTextInput(e.target.value.trim()))}
           />
-          <Button onClick={sendComment} variant="contained" disabled={commentText.length < 1}>Отправить</Button>
+          <LoadingButton loading={commentIsLoading} onClick={sendComment} variant="contained" disabled={text.length < 1}>Отправить</LoadingButton>
         </div>
       </div>
     </>
