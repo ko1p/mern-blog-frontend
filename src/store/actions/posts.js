@@ -61,6 +61,19 @@ export const fetchRemovePost = createAsyncThunk(
     }
 ); // TODO Сохранить текст ошибок в redux, как-то отобразить их пользователю.
 
+export const fetchRemoveComment = createAsyncThunk(
+    'comments/fetchRemoveComment',
+    async (commentId, thunkAPI) => {
+        try {
+            console.log(1231231233)
+            const { data } = await axios.delete(`/comments/${commentId}`);
+            return data;
+        } catch (err) {
+            return thunkAPI.rejectWithValue("При удалении комментария произошла ошибка.")
+        }
+    }
+); // TODO Сохранить текст ошибок в redux, как-то отобразить их пользователю.
+
 export const fetchLastComments = createAsyncThunk(
     'comments/fetchLastComments',
     async (_, thunkAPI) => {

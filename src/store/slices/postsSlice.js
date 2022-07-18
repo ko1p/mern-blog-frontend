@@ -8,6 +8,7 @@ import {
   fetchPostById,
   fetchCommentsById,
   fetchCreateComment,
+  fetchRemoveComment,
 } from "../actions/posts";
 
 const initialState = {
@@ -31,8 +32,8 @@ const initialState = {
       items: [],
     },
     comment: {
-      text: '',
-      status: 'loaded'
+      text: "",
+      status: "loaded"
     },
   },
 };
@@ -85,6 +86,12 @@ export const postsSlice = createSlice({
     [fetchRemovePost.pending]: (state, action) => {
       state.posts.items = state.posts.items.filter(
         (post) => post._id !== action.meta.arg
+      );
+    },
+    [fetchRemoveComment.fulfilled]: (state, action) => {
+      console.log(action)
+      state.currentPost.comments.items = state.currentPost.comments.items.filter(
+        (comment) => comment._id !== action.meta.arg
       );
     },
     [fetchLastComments.pending]: (state) => {
