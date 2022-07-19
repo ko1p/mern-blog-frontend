@@ -12,6 +12,7 @@ import { UserInfo } from '../UserInfo';
 import { PostSkeleton } from './Skeleton';
 import { useDispatch } from 'react-redux';
 import { fetchRemovePost } from '../../store/actions/posts';
+import dateConverter from '../../utils/dateConverter';
 
 export const Post = ({
   id,
@@ -61,7 +62,7 @@ export const Post = ({
         />
       )}
       <div className={styles.wrapper}>
-        <UserInfo {...user} additionalText={createdAt} />
+        <UserInfo {...user} additionalText={dateConverter(createdAt)} />
         <div className={styles.indention}>
           <h2 className={clsx(styles.title, { [styles.titleFull]: isFullPost })}>
             {isFullPost ? title : <Link to={`/posts/${id}`}>{title}</Link>}

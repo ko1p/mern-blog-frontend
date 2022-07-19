@@ -14,7 +14,7 @@ import { fetchRemoveComment } from "../../store/actions/posts";
 
 export const CommentsBlock = ({ items, children, isLoading = true }) => {
   const dispatch = useDispatch();
-  const userId = useSelector((state) => state.auth.data._id);
+  const userId = useSelector((state) => state.auth.data?._id);
 
   const deleteComment = commentId => {
     dispatch(fetchRemoveComment(commentId));
