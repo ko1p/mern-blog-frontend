@@ -65,7 +65,6 @@ export const fetchRemoveComment = createAsyncThunk(
     'comments/fetchRemoveComment',
     async (commentId, thunkAPI) => {
         try {
-            console.log(1231231233)
             const { data } = await axios.delete(`/comments/${commentId}`);
             return data;
         } catch (err) {
@@ -89,7 +88,6 @@ export const fetchLastComments = createAsyncThunk(
 export const fetchCreateComment = createAsyncThunk(
     'comments/fetchCreateComment',
     async ({id, text}, thunkAPI) => {
-        console.log(id, text)
         try {
             const { data } = await axios.post(`/comments/${id}`, {text});
             return data;

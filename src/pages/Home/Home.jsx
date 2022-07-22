@@ -45,7 +45,7 @@ export const Home = () => {
               user={post.user}
               createdAt={post.createdAt}
               viewsCount={post.viewsCount}
-              commentsCount={3}
+              commentsCount={post.commentsCount.length}
               tags={post.tags}
               isEditable={userData?._id === post.user._id}
             />)
