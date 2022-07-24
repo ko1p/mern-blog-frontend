@@ -12,7 +12,7 @@ import IconButton from "@mui/material/IconButton";
 import DeleteIcon from "@mui/icons-material/Delete";
 import { fetchRemoveComment } from "../../store/actions/posts";
 
-export const CommentsBlock = ({ items, children, isLoading = true }) => {
+export const CommentsBlock = ({ items, children, isLoading = true, isFullCommnet = false }) => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.auth.data?._id);
 
@@ -44,7 +44,7 @@ export const CommentsBlock = ({ items, children, isLoading = true }) => {
                     <b>{obj.user.fullName}</b>
                     <span>{obj.text}</span>
                   </Grid>
-                  {obj.user._id === userId ? (
+                  {obj.user._id === userId && isFullCommnet ? (
                     <IconButton aria-label="delete" onClick={() => deleteComment(obj._id)} >
                       <DeleteIcon />
                     </IconButton>

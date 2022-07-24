@@ -48,6 +48,7 @@ export const FullPost = () => {
       <CommentsBlock
         items={comments.items}
         isLoading={isCommentsLoading}
+        isFullCommnet
       >
         <AddComment />
       </CommentsBlock>
