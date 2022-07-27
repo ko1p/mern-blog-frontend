@@ -7,7 +7,7 @@ import SimpleMDE from "react-simplemde-editor";
 import "easymde/dist/easymde.min.css";
 import styles from "./AddPost.module.scss";
 import { useSelector } from "react-redux";
-import { Navigate, useNavigate, useParams } from "react-router-dom";
+import { Link, Navigate, useNavigate, useParams } from "react-router-dom";
 import { isAuth } from "../../store/slices/authSlice";
 import { useRef } from "react";
 import axios from "../../axios/axios";
@@ -167,9 +167,9 @@ export const AddPost = () => {
           <Button size="large" variant="contained" type="submit">
             {isEditingMode ? `Сохранить` : `Опубликовать`}
           </Button>
-          <a href="/">
-            <Button size="large">Отмена</Button>
-          </a>
+          <Link to="/" className={styles.reset}>
+            <Button size="large" variant="outlined">Отмена</Button>
+          </Link>
         </div>
       </form>
     </Paper>
