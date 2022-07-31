@@ -39,7 +39,7 @@ export const AddComment = () => {
             multiline
             fullWidth
             value={text}
-            onChange={e => dispatch(setCommentTextInput(e.target.value.trim()))}
+            onChange={e => dispatch(setCommentTextInput(e.target.value))}
           />
           <LoadingButton loading={commentIsLoading} onClick={sendComment} variant="contained" disabled={text.length < 1}>Отправить</LoadingButton>
         </div>

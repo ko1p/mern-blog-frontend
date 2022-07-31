@@ -11,6 +11,7 @@ import { fetchCommentsById, fetchPostById } from "../../store/actions/posts";
 export const FullPost = () => {
   const dispatch = useDispatch();
   const { data, status, comments } = useSelector(state => state.posts.currentPost);
+  const isUserAuth = useSelector(state => state.auth.data);
 
   const isDataLoading = status === 'loading';
   const isCommentsLoading = comments.status === 'loading';
@@ -24,8 +25,8 @@ export const FullPost = () => {
 
   }, [dispatch, id]);
 
-  if (isDataLoading) {
-    return <Post isLoading={isDataLoading} isFullPost />;
+  if (isDataLoading || isCommentsLoading) {
+    return <Post isLoading={true} isFullPost />;
   }
 
   return (
@@ -33,7 +34,7 @@ export const FullPost = () => {
       <Post
         id={data._id}
         title={data.title}
-        imageUrl={data.imageUrl ? `http://localhost:4444${data.imageUrl}` : ''}
+        imageUrl={data.imageUrl ? `${process.env.REACT_APP_API_URL}${data.imageUrl}` : ''}
         user={data.user}
         createdAt={data.createdAt}
         viewsCount={data.viewsCount}
@@ -50,7 +51,9 @@ export const FullPost = () => {
         isLoading={isCommentsLoading}
         isFullCommnet
       >
-        <AddComment />
+        {
+          isUserAuth ? <AddComment /> : null
+        }
       </CommentsBlock>
     </>
   );
