@@ -5,22 +5,24 @@ import { Post } from "../../components/Post";
 import { TagsBlock } from "../../components/TagsBlock/TagsBlock";
 import { CommentsBlock } from "../../components/CommentsBlock/CommentsBlock";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchTags, fetchPostsWithTag } from "../../store/actions/posts";
+import { fetchTags, fetchPostsWithTag, fetchLastComments } from "../../store/actions/posts";
 import { Typography } from "@mui/material";
 import { useParams } from "react-router-dom";
 
 export const PostsWithTag = () => {
   const dispatch = useDispatch();
   const { tag } = useParams();
-  const { posts, tags } = useSelector((state) => state.posts);
+  const { posts, tags, comments } = useSelector((state) => state.posts);
   const userData = useSelector((state) => state.auth.data);
 
   const isPostsLoading = posts.status === "loading";
   const isTagsLoading = tags.status === "loading";
+  const isCommentsLoading = comments.status === 'loading';
 
   useEffect(() => {
     dispatch(fetchPostsWithTag(tag));
     dispatch(fetchTags());
+    dispatch(fetchLastComments());
   }, [dispatch, tag]);
 
   return (
@@ -53,23 +55,8 @@ export const PostsWithTag = () => {
         <Grid xs={4} item>
           <TagsBlock items={tags.items} isLoading={isTagsLoading} />
           <CommentsBlock
-            items={[
-              {
-                user: {
-                  fullName: "Вася Пупкин",
-                  avatarUrl: "https://mui.com/static/images/avatar/1.jpg",
-                },
-                text: "Это тестовый комментарий",
-              },
-              {
-                user: {
-                  fullName: "Иван Иванов",
-                  avatarUrl: "https://mui.com/static/images/avatar/2.jpg",
-                },
-                text: "When displaying three lines or more, the avatar is not aligned at the top. You should set the prop to align the avatar at the top",
-              },
-            ]}
-            isLoading={false}
+            items={comments.items}
+            isLoading={isCommentsLoading}
           />
         </Grid>
       </Grid>
