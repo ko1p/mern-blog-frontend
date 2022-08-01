@@ -40,7 +40,7 @@ export const PostsWithTag = () => {
                 id={post._id}
                 title={post.title}
                 imageUrl={
-                  post.imageUrl ? `${process.env.REACT_APP_API_URL}${post.imageUrl}` : ""
+                  post.imageUrl ? `${post.imageUrl}` : ""
                 }
                 user={post.user}
                 createdAt={post.createdAt}
