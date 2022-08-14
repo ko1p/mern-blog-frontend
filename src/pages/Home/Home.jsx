@@ -46,6 +46,7 @@ export const Home = () => {
               commentsCount={post.commentsCount.length}
               tags={post.tags}
               isEditable={userData?._id === post.user._id}
+              key={`homePost-${index}`}
             />)
           ))}
         </Grid>

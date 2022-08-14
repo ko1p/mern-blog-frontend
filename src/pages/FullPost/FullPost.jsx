@@ -42,9 +42,9 @@ export const FullPost = () => {
         tags={data.tags}
         isFullPost
       >
-        <p>
+        <div>
           <ReactMarkdown children={data.text} />
-        </p>
+        </div>
       </Post>
       <CommentsBlock
         items={comments.items}
