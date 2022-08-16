@@ -113,6 +113,7 @@ export const AddPost = () => {
         variant="outlined"
         size="large"
         onClick={() => inputFileRef.current.click()}
+        className={styles.upload}
       >
         Загрузить превью
       </Button>
@@ -128,6 +129,7 @@ export const AddPost = () => {
             variant="contained"
             color="error"
             onClick={onClickRemoveImage}
+            className={styles.delete}
           >
             Удалить
           </Button>

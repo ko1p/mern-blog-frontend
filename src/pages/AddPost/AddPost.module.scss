@@ -2,6 +2,10 @@
   input {
     font-size: 42px;
     font-weight: 900;
+
+    @media screen and (max-width: 500px ) {
+      font-size: 24px;
+    }
   }
 
   div {
@@ -18,6 +22,12 @@
 
 .tags {
   margin: 15px 0;
+
+  input {
+    @media screen and (max-width: 500px ) {
+      font-size: 14px;
+    }
+  }
 }
 
 .editor {
@@ -27,6 +37,10 @@
     .cm-s-easymde {
       border: 0;
       font-size: 22px;
+
+      @media screen and (max-width: 500px ) {
+        font-size: 18px;
+      }
     }
     .editor-toolbar {
       border: 0;
@@ -40,9 +54,19 @@
 
   button {
     margin-right: 15px;
+
+    @media screen and (max-width: 500px ) {
+      font-size: 13px;
+    }
   }
 }
 
 .reset {
   text-decoration: none;
+}
+
+.upload, .delete {
+  @media screen and (max-width: 500px ) {
+    font-size: 13px;
+  }
 }

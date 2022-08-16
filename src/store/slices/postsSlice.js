@@ -89,7 +89,6 @@ export const postsSlice = createSlice({
       );
     },
     [fetchRemoveComment.fulfilled]: (state, action) => {
-      console.log(action)
       state.currentPost.comments.items = state.currentPost.comments.items.filter(
         (comment) => comment._id !== action.meta.arg
       );
