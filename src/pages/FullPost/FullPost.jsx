@@ -4,6 +4,7 @@ import { useParams } from 'react-router-dom';
 import { Post } from "../../components/Post";
 import { AddComment } from "../../components/AddComment";
 import { CommentsBlock } from "../../components/CommentsBlock/CommentsBlock";
+import Grid from '@mui/material/Grid';
 import ReactMarkdown from "react-markdown";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchCommentsById, fetchPostById } from "../../store/actions/posts";
@@ -30,7 +31,7 @@ export const FullPost = () => {
   }
 
   return (
-    <>
+    <Grid xs={12} md={8} item>
       <Post
         id={data._id}
         title={data.title}
@@ -55,6 +56,6 @@ export const FullPost = () => {
           isUserAuth ? <AddComment /> : null
         }
       </CommentsBlock>
-    </>
+    </Grid>
   );
 };
