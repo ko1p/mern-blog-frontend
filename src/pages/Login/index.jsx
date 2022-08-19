@@ -62,6 +62,7 @@ export const Login = () => {
         <TextField
           className={styles.field}
           label="Пароль"
+          type="password"
           error={Boolean(errors.password?.message)}
           helperText={errors.password?.message}
           fullWidth
