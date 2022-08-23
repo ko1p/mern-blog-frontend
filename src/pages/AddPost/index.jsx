@@ -48,7 +48,6 @@ export const AddPost = () => {
   }, []);
 
   const onSubmitHandler = async (e) => {
-    console.log(e);
     e.preventDefault();
     try {
       setLoading(true);

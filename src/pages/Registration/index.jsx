@@ -26,12 +26,13 @@ export const Registration = () => {
       fullName: "",
       email: "",
       password: "",
+      avatarUrl: "",
     },
     mode: "onChange",
   });
 
   const onSubmit = async (values) => {
-    console.log(values)
+    
     const data = await dispatch(fetchRegister(values));
 
     if (`error` in data) {
@@ -74,6 +75,14 @@ export const Registration = () => {
         />
         <TextField
           className={styles.field}
+          error={Boolean(errors.avatarUrl?.message)}
+          helperText={errors.avatarUrl?.message}
+          {...register("avatarUrl")}
+          label="Ссылка на аватарку"
+          fullWidth
+        />
+        <TextField
+          className={styles.field}
           error={Boolean(errors.password?.message)}
           helperText={errors.password?.message}
           {...register("password", { required: "Укажите пароль" })}
@@ -81,7 +90,13 @@ export const Registration = () => {
           type="password"
           fullWidth
         />
-        <Button type="submit" disabled={!isValid} size="large" variant="contained" fullWidth>
+        <Button
+          type="submit"
+          disabled={!isValid}
+          size="large"
+          variant="contained"
+          fullWidth
+        >
           Зарегистрироваться
         </Button>
       </form>
