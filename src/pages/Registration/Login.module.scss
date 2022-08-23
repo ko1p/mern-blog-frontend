@@ -1,5 +1,6 @@
 .root {
-  width: 400px;
+  max-width: 400px;
+  width: 100%;
   padding: 50px;
   border: 1px solid #dedede;
   margin: 50px auto;
@@ -13,6 +14,10 @@
   text-align: center !important;
   font-weight: bold !important;
   margin-bottom: 30px !important;
+
+  @media screen and (max-width: 500px) {
+    font-size: 20px !important;
+  }
 }
 
 .avatar {

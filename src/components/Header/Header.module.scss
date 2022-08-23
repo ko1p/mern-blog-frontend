@@ -2,7 +2,7 @@
   background-color: #fff;
   padding: 10px 0;
   border-bottom: 1px solid #e0e0e0;
-  margin-bottom: 30px;
+  margin-bottom: 10px;
 }
 
 .inner {
@@ -24,14 +24,31 @@
   &:hover {
     background-color: #4361ee;
   }
+
+  h1 {
+    font-size: 0.875rem;
+    margin: 0;
+
+    @media screen and (max-width: 600px) {
+      font-size: 14px;
+    }
+  }
 }
 
 .buttons {
   button {
     margin-left: 10px;
+
+    @media screen and (max-width: 600px) {
+      font-size: 12px;
+    }
   }
 
   a {
     text-decoration: none;
+
+    @media screen and (max-width: 600px) {
+      font-size: 12px;
+    }
   }
 }

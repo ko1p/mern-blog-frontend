@@ -3,9 +3,7 @@ import Tabs from '@mui/material/Tabs';
 import Tab from '@mui/material/Tab';
 import Grid from '@mui/material/Grid';
 
-import { Post } from '../../components/Post';
-import { TagsBlock } from '../../components/TagsBlock/TagsBlock';
-import { CommentsBlock } from '../../components/CommentsBlock/CommentsBlock';
+import { Post, TagsBlock, CommentsBlock } from '../../components/index';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchPosts, fetchTags, fetchLastComments } from '../../store/actions/posts';
 
@@ -33,11 +31,11 @@ export const Home = () => {
         <Tab label="Популярные" onClick={() => setSortedBy('views')} />
       </Tabs>
       <Grid container spacing={4}>
-        <Grid xs={8} item>
+        <Grid xs={12} md={8} item>
           {(isPostsLoading ? [...Array(5)] : posts.items).map((post, index) => (
             isPostsLoading ? (
             <Post key={index} isLoading={true} />)
-            : 
+            :
             (<Post
               id={post._id}
               title={post.title}
@@ -48,10 +46,11 @@ export const Home = () => {
               commentsCount={post.commentsCount.length}
               tags={post.tags}
               isEditable={userData?._id === post.user._id}
+              key={`homePost-${index}`}
             />)
           ))}
         </Grid>
-        <Grid xs={4} item>
+        <Grid xs={4} item sx={{ display: { xs: 'none', md: 'block' } }}>
           <TagsBlock items={tags.items} isLoading={isTagsLoading} />
           <CommentsBlock
             items={comments.items}
